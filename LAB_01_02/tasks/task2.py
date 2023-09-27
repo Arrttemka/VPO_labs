@@ -61,6 +61,8 @@ def input_person_data():
         # Создаем экземпляр класса Person и добавляем персону в список persons
         persons.append(Person(first_name, last_name, age))
 
+        sum_of_all_ages += age
+
     return persons, min_age, max_age, sum_of_all_ages
 
 # Выводим финальные данные

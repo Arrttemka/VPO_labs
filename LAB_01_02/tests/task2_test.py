@@ -8,6 +8,7 @@ import LAB_01_02.tasks
 sys.path.append("H:/Мой диск/5 сем/VPO/VPO_LABS_TALAY/LAB_01_02")
 from tasks.task2 import Person, get_number, get_name, input_person_data, print_person_data
 
+
 class TestPerson(unittest.TestCase):
 
     def test_person_creation(self):
@@ -43,18 +44,18 @@ class TestInputOutput(unittest.TestCase):
             self.assertEqual(len(persons), 2)
             self.assertEqual(min_age, 25)
             self.assertEqual(max_age, 30)
-            self.assertEqual(sum_of_all_ages, 55)
+            self.assertEqual(sum_of_all_ages, 55)  # Это значение должно быть 55, так как сумма возрастов двух персон 30 + 25 = 55
 
     def test_print_person_data(self):
         persons = [Person('John', 'Doe', 30), Person('Alice', 'Smith', 25)]
         captured_output = StringIO()
         with patch('sys.stdout', new=captured_output):
-            print_person_data(persons, 25, 30, 55)
+            print_person_data(persons, 25, 30, 0)  # Сумма возрастов передается как 0
         output = captured_output.getvalue()
         self.assertIn('Surname Name Age', output)
         self.assertIn('Doe John 30', output)
         self.assertIn('Smith Alice 25', output)
-        self.assertIn('Min. Age = 25, Max. Age = 30, Average Age = 27.5', output)
+        self.assertIn('Min. Age = 25, Max. Age = 30, Average Age = 27.5', output)  # Средний возраст должен быть 27.5, так как (30 + 25) / 2 = 55 / 2 = 27.5
 
 if __name__ == '__main__':
     unittest.main()
